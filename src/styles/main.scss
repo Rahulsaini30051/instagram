@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  .app {
+    max-width: 767px;
+    // margin: 0 auto;
+    padding: 4px 30px;
+  }
+  
+  @media (min-width: 768px) {
+    .app {
+      display: none;
+    }
+  }
+  

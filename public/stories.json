@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "profile": "/public/boy.jpeg",
+      "name": "Simen",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 2,
+      "profile": "/public/simen.jpg",
+      "name": "ZackJohn",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 3,
+      "profile": "/public/boy.jpeg",
+      "name": "Vikash",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 4,
+      "profile": "/public/simen.jpg",
+      "name": "Simen",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 5,
+      "profile": "/public/boy.jpeg",
+      "name": "Simen",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 6,
+      "profile": "/public/boy.jpeg",
+      "name": "ZackJohn",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    },
+    {
+      "id": 7,
+      "profile": "/public/boy.jpeg",
+      "name": "Simen",
+      "media": "https://www.w3schools.com/tags/mov_bbb.mp4"
+    }
+  ]
+  
