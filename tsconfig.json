@@ -4,11 +4,12 @@
     "module": "ESNext",
     "target": "ES6",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "strict": true,
+    "allowImportingTsExtensions": true,
     
   }
 }

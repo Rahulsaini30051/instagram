@@ -1,12 +1,11 @@
 import "../styles/StoryViewer.scss";
-
 import React, { useEffect, useRef, useState } from "react";
 
 type Story = {
   id: number;
   profile: string;
   media: string;
-  name: string
+  name: string;
 };
 
 interface StoryViewerProps {
@@ -26,40 +25,56 @@ const StoryViewer: React.FC<StoryViewerProps> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const currentStory = stories[currentIndex];
 
   useEffect(() => {
     setLoading(true);
-  
+
     if (timerRef.current) clearTimeout(timerRef.current);
-  
-    timerRef.current = setTimeout(() => {
-      // Wait 2 more seconds before moving to next
+
+    if (currentStory.profile === "image") {
       timerRef.current = setTimeout(() => {
-        if (currentIndex === stories.length - 1) {
-          onClose();
-        } else {
-          onNext();
-        }
-      }, 2000); // 2-second delay
-    }, 5000); // Story display duration
-  
+        timerRef.current = setTimeout(() => {
+          if (currentIndex === stories.length - 1) {
+            onClose();
+          } else {
+            onNext();
+          }
+        }, 2000);
+      }, 5000);
+    }
+
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, [currentIndex]);
-  
-  
 
   const handleMediaLoad = () => {
     setLoading(false);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const x = e.clientX;
-    const width = window.innerWidth;
-    x < width / 2 ? onPrev() : onNext();
+  const handleVideoEnd = () => {
+    timerRef.current = setTimeout(() => {
+      if (currentIndex === stories.length - 1) {
+        onClose();
+      } else {
+        onNext();
+      }
+    }, 2000); 
   };
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const clickX = e.clientX;
+    const windowWidth = window.innerWidth;
+  
+    if (clickX < windowWidth / 2) {
+      onPrev(); 
+    } else {
+      onNext(); 
+    }
+  };
+  
 
   return (
     <div className="story-viewer" onClick={handleClick}>
@@ -78,15 +93,17 @@ const StoryViewer: React.FC<StoryViewerProps> = ({
           src={currentStory.media}
           onLoad={handleMediaLoad}
           className="story-viewer__media"
+          alt={currentStory.name}
         />
       ) : (
         <video
-          src={currentStory.media}
+          ref={videoRef}
+          src={`${currentStory.media}?t=${currentStory.id}`}
           autoPlay
           playsInline
           onLoadedData={handleMediaLoad}
+          onEnded={handleVideoEnd}
           className="story-viewer__media"
-          data-testid="video"
         />
       )}
     </div>

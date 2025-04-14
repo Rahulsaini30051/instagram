@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import StoryList from './components/StoryList';
-import StoryViewer from './components/StoryViewer';
-import './styles/main.scss';
+import React, { useEffect, useState } from "react";
+import StoryList from "./components/StoryList";
+import StoryViewer from "./components/StoryViewer";
+import "./styles/main.scss";
 
 interface Story {
   id: number;
-  profile:   string;
+  profile: string;
   media: string;
-  name: string
+  name: string;
 }
-
 
 const App: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch('/stories.json')
+    fetch("/stories.json")
       .then((res) => res.json())
       .then(setStories);
   }, []);
 
   const closeViewer = () => setViewerIndex(null);
-  const goToNext = () =>
+  const goToNext = () => {
     setViewerIndex((prev) =>
       prev !== null && prev < stories.length - 1 ? prev + 1 : prev
     );
+  };
   const goToPrev = () =>
     setViewerIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : prev));
 

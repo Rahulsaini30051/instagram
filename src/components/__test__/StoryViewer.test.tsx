@@ -36,8 +36,7 @@ describe('StoryViewer Component', () => {
       />
     );
 
-    // You may want to check with a test ID or by tag name since `getByRole('video')` is not valid
-    const video = screen.getByTestId('video'); // ✅ make sure your component has `data-testid="video"`
+    const video = screen.getByTestId('video'); 
     expect(video).toBeInTheDocument();
   });
 
